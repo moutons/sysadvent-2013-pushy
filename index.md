@@ -2,9 +2,9 @@ Day 9 - Getting Pushy With Chef
 
 One of the long standing issues with Chef has always been that changes we wanted to make to nodes weren’t necessarily instant. Eventually your nodes would come in sync with the recipes on your Chef server, but depending on how complex your environment was this might take a few runs to happen. 
 
-There were ways around this, mainly by using `knife ssh` to force the nodes to instantly update, in the order you want. While this method worked, it had it’s own problems (needing ssh keys and sudo rights for example). A few months ago Chef released an add-on to the enterprise version that allows users to initiate actions on a node without requiring SSH access; we call this feature Push Jobs. Right now, Push Jobs (also known as Pushy) are a feature of Enterprise Chef, but we are working towards Open Sourcing Push Jobs in early 2014 (think Q1). 
+There were ways around this, mainly by using `knife ssh` to force the nodes to instantly update, in the order you want. While this method worked, it had it’s own problems (needing ssh keys and sudo rights for example). A few months ago Chef released an add-on to the enterprise version that allows users to initiate actions on a node without requiring SSH access; we call this feature Push Jobs. Right now, Push Jobs (formerly known as Pushy) are a feature of Enterprise Chef, but we are working towards open sourcing Push Jobs in early 2014 (think Q1). 
 
-Getting started with Pushy is fairly easy. There are 2 additional components that need to be installed, the Pushy server and the Pushy clients. The Pushy server sits along side your Erchef server, either on the same machine or a separate host. The Pushy clients can be installed using the push-jobs cookbook. There is a [copious amount of documentation](http://docs.opscode.com/install_push_jobs.html) covering the installation, so I won’t cover that in detail. The two things you need to know is how to allow commands to be executed via Pushy, and how to start jobs. 
+Getting started with Push Jobs is fairly easy. There are 2 additional components that need to be installed, the Push Jobs server and the Push Jobs clients. The Push Jobs server sits along side your Erchef server, either on the same machine or a separate host. The Push Jobs clients can be installed using the push-jobs cookbook. There is a [copious amount of documentation](http://docs.opscode.com/install_push_jobs.html) covering the installation, so I won’t cover that in detail. The two things you need to know is how to allow commands to be executed via Push Jobs, and how to start jobs. 
 
 First, commands to be executed is controlled by a “whitelist” attribute. The push-jobs cookbook sets the `node['push_jobs']['whitelist']` attribute and writes a configuration file `/etc/chef/push-jobs-client.rb`. The `node['push_jobs']['whitelist']` attribute is used in this config file to determine what commands can be ran on a node. 
 
@@ -105,4 +105,4 @@ end
 
 This cross-node orchestration doesn’t have to be a full-fledged chef run. You could use it to simply restart a service (if on your whitelist) if needed. 
 
-Hopefully this gives you a good idea on how to use Pushy, why it’s different than knife ssh, and gets you excited for the upcoming open source release. 
+Hopefully this gives you a good idea on how to use Push Jobs, why it’s different than knife ssh, and gets you excited for the upcoming open source release. 
