@@ -105,4 +105,4 @@ end
 
 This cross-node orchestration doesn’t have to be a full-fledged chef run. You could use it to simply restart a service (if on your whitelist) if needed. 
 
-Hopefully this gives you a good idea on how to use Push Jobs, why it’s different than knife ssh, and gets you excited for the upcoming open source release. 
+Hopefully this gives you a good idea on how to use Push Jobs, why it’s different than knife ssh, and gets you excited for the upcoming open source release. At Chef our goal is to provide our community with the primitive resources that they can use to make their jobs more delightful. Push Jobs are the first release of primitives to better orchestrate things like Continuous Delivery, Continuous Integration, and more complex use cases. 
