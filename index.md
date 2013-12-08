@@ -94,7 +94,7 @@ updated_at:  Fri, 06 Dec 2013 21:05:40 GMT
 
 The nice thing about using push jobs is that I can use the same credentials I use to access Chef to fire off commands on whitelisted nodes with Push Jobs enabled. I don’t need to have SSH keys for the remote nodes as I do with `knife ssh`. 
 
-The other nice thing is that Push Jobs can be used inside recipes to orchestrate actions between machines. There is a really basic LWRP that allows for you to fire push jobs from other nodes. You can find the [LWRP on github](https://github.com/mfdii/pushy). Why would you want to do this? Say for instance your webapp hosts have autoscaled. Your chef-client run interval on your HAProxy node is 15 minutes, but you don’t want to wait (at most) 15 minutes for the new webapp to be in the pool. Your webapp recipe can fire off a push job to have the HAProxy node run `chef-client`. 
+The other nice thing is that Push Jobs can be used inside recipes to orchestrate actions between machines. There is a really basic [Lightweight Resource Provider](http://docs.opscode.com/lwrp.html) that allows for you to fire push jobs from other nodes. You can find the [LWRP on github](https://github.com/mfdii/pushy). Why would you want to do this? Say for instance your webapp hosts have autoscaled. Your chef-client run interval on your HAProxy node is 15 minutes, but you don’t want to wait (at most) 15 minutes for the new webapp to be in the pool. Your webapp recipe can fire off a push job to have the HAProxy node run `chef-client`. 
 
 ```
 pushy "chef-client" do
@@ -103,6 +103,6 @@ pushy "chef-client" do
 end
 ```
 
-This cross-node orchestration doesn’t have to be part of a full-fledged chef run. You could use it to simply restart a whitelisted service if needed. 
+This cross-node orchestration doesn’t have to be a full-fledged chef run as seen above. You could use it to simply restart a whitelisted service if needed. 
 
 Hopefully this gives you a good idea on how to use Push Jobs, why it’s different than knife ssh, and gets you excited for the upcoming open source release. At Chef our goal is to provide our community with the primitive resources that they can use to make their jobs more delightful. Push Jobs are the first release of primitives to better orchestrate things like Continuous Delivery, Continuous Integration, and more complex use cases. 
